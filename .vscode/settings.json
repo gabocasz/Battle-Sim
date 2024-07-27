@@ -1,3 +1,6 @@
 {
-    "Lua.runtime.unicodeName": true
+    "Lua.runtime.unicodeName": true,
+    "Lua.diagnostics.globals": [
+        "character"
+    ]
 }

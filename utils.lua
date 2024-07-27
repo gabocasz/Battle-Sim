@@ -26,20 +26,12 @@ function utils.getProgressBar(attribute)
     return result
 end
 
---sistema de escolher o personagem
-function utils.characterChooser()
-    while true do
-        print("Escolha um personagem:")
-        local character = io.read():lower()  -- Converte a entrada para minúsculas para facilitar a comparação
-        if utils.loadCharacter(character) then
-            break  -- Sai do loop se um personagem válido for escolhido
-        else
-            print("Você não escolheu um personagem válido! Tente novamente.")
-        end
-    end
+-- Função para formatar a string com a primeira letra maiúscula
+local function capitalize(str)
+    return str:sub(1, 1):upper() .. str:sub(2):lower()
 end
 
---sistema de carregar o personagem escolhido, e verificar se ele e valido ou nao
+-- Função para carregar o personagem escolhido e verificar se ele é válido
 function utils.loadCharacter(name)
     local path = "characters." .. name
     local success, character = pcall(require, path)
@@ -52,9 +44,67 @@ function utils.loadCharacter(name)
     end
 end
 
+-- Função para confirmar a escolha do personagem
+function utils.confirmCharacter(name)
+    while true do
+        print([[
+====================================================================
+| Confirmar escolha?                                                |
+| .Sim                                                              |
+| .Nao                                                              |
+====================================================================
+        ]])
+        local answer = io.read():lower()
+        if answer == "sim" then
+            local message = name .. " entra em campo! Hora da batalha!"
+            local borderLength = #message + 8 -- Adiciona espaço para bordas e padding
+            local border = string.rep("=", borderLength)
+            local paddedMessage = "|    " .. message .. "  |"
 
-       
-    
+            print(border)
+            print(paddedMessage)
+            print(border)
+            return true
+        elseif answer == "não" then
+            return false
+        else
+            print("| Resposta inválida, por favor responda 'sim' ou 'não'. |")
+        end
+    end
+end
+
+
+
+-- Função para escolher o personagem
+function utils.characterChooser()
+    while true do
+        print([[
+=======================================================           
+|Escolha um personagem:                               |
+|                                                     |
+|.Sledge                                              |
+|.Zofia                                               |
+|.Montagne                                            |
+|.Twitch                                              |
+=======================================================
+]])
+        local character = io.read():lower()  -- Converte a entrada para minúsculas para facilitar a comparação
+        character = capitalize(character)    -- Formata para que a primeira letra seja maiúscula
+        if utils.loadCharacter(character) then
+            if utils.confirmCharacter(character) then
+                break  -- Sai do loop se o jogador confirmar a escolha
+            else
+                print("Escolha não confirmada, tente novamente.")
+            end
+        else
+            print("Você não escolheu um personagem válido! Tente novamente.")
+        end
+    end
+end
+
+
+utils.characterChooser()
+
 
 
 return utils 
