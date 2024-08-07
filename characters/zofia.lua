@@ -1,5 +1,7 @@
 local zofia = {}
 
+local utils = require("utils")
+
 zofia.name = [[
 ====================================================================================
 |ZOFIA                                                                             |
@@ -32,4 +34,36 @@ zofia.desc = [[
 |                                                                                  |
 ====================================================================================
 ]]
+
+--definitions 
+MaxHealth = 10
+Health = 10
+Dmg = 7
+Defense = 3
+Speed = 5
+
+AdrenalSurge = 3 
+
+zofia.stats = [[
+
+===================================================================================
+| Atributos:                                                                      |
+|                                                                                 |
+| Vida:         ]] .. utils.getProgressBar(Health) .. [[                                                        |
+| Dano:         ]] .. utils.getProgressBar(Dmg)  .. [[                                                        |
+| Defesa:       ]] .. utils.getProgressBar(Defense)  .. [[                                                        |
+| Velocidade:   ]] .. utils.getProgressBar(Speed) .. [[                                                        |
+|                                                                                 |
+| Habilidades especiais:                                                          |
+| - KS79 LIFELINE: Zofia utiliza de um lanca granadas que pode alternar entre     |
+| Granadas de impacto e granadas atordoantes.                                     |
+===================================================================================
+]]
+
+
 return zofia
+
+
+
+
+

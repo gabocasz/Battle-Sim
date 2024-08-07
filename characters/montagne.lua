@@ -1,5 +1,7 @@
 local montagne = {}
 
+local utils = require("utils")
+
 montagne.name = [[
 ==================================================================================
 |MONTAGNE                                                                        |
@@ -22,4 +24,29 @@ montagne.desc = [[
 |                                                                                |
 ==================================================================================
 ]]
+
+--definitions
+montagne.MaxHealth = 15
+montagne.Health = 15
+montagne.Dmg = 3
+montagne.Defense = 9
+montagne.Speed = 3 
+
+montagne.stats = [[
+
+==================================================================================
+| Atributos:                                                                     |
+|                                                                                 |
+| Vida:        ]] .. utils.getProgressBar(character.Health) .. [[                             |
+| Dano:   ]] .. utils.getProgressBar(character.Dmg)  .. [[                             |
+| Defesa:       ]] .. utils.getProgressBar(character.Defense)  .. [[                             |
+| Velocidade:  ]] .. utils.getProgressBar(character.Speed) .. [[                             |
+|                                                                                 |
+| Habilidades especiais:                                                          |
+| - Escudo LeRoc: Nega totalmente o dano recebido na proxima rodada.              |
+|                                                                                 |
+|                                                                                 |
+===================================================================================
+]]
+
 return montagne

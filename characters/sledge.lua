@@ -1,5 +1,7 @@
 local sledge = {}
 
+local utils = require("utils")
+
 sledge.name = [[
 ==================================================================================
 |SLEDGE                                                                          |
@@ -27,5 +29,30 @@ sledge.desc = [[
 |rapidez e relativo silencio.                                                    |
 |                                                                                |
 ==================================================================================
+]]
+
+--definitions
+MaxHealth = 10
+Health = 10
+Dmg = 5
+Defense = 5
+Speed = 3
+
+AdrenalSurge = 3 
+
+sledge.stats = [[
+
+===================================================================================
+| Atributos:                                                                      |
+|                                                                                 |
+| Vida:         ]] .. utils.getProgressBar(Health) .. [[                                                        |
+| Dano:         ]] .. utils.getProgressBar(Dmg)  .. [[                                                        |
+| Defesa:       ]] .. utils.getProgressBar(Defense)  .. [[                                                        |
+| Velocidade:   ]] .. utils.getProgressBar(Speed) .. [[                                                        |
+|                                                                                 |
+| Habilidades especiais:                                                          |
+| - Marreta de demolição:Quebra a defesa do oponente pela metade no proximo round.|
+|                                                                                 |
+===================================================================================
 ]]
 return sledge
