@@ -26,21 +26,23 @@ montagne.desc = [[
 ]]
 
 --definitions
-montagne.MaxHealth = 15
-montagne.Health = 15
-montagne.Dmg = 3
-montagne.Defense = 9
-montagne.Speed = 3 
+MaxHealth = 15
+Health = 15
+Dmg = 3
+Defense = 9
+Speed = 3 
+
+AdrenalSurge = 3
 
 montagne.stats = [[
 
 ==================================================================================
 | Atributos:                                                                     |
 |                                                                                 |
-| Vida:        ]] .. utils.getProgressBar(character.Health) .. [[                             |
-| Dano:   ]] .. utils.getProgressBar(character.Dmg)  .. [[                             |
-| Defesa:       ]] .. utils.getProgressBar(character.Defense)  .. [[                             |
-| Velocidade:  ]] .. utils.getProgressBar(character.Speed) .. [[                             |
+| Vida:        ]] .. utils.getProgressBar(Health ) .. [[                             |
+| Dano:        ]] .. utils.getProgressBar(Dmg    ) .. [[                             |
+| Defesa:      ]] .. utils.getProgressBar(Defense) .. [[                             |
+| Velocidade:  ]] .. utils.getProgressBar(Speed  ) .. [[                             |
 |                                                                                 |
 | Habilidades especiais:                                                          |
 | - Escudo LeRoc: Nega totalmente o dano recebido na proxima rodada.              |
@@ -48,5 +50,4 @@ montagne.stats = [[
 |                                                                                 |
 ===================================================================================
 ]]
-
 return montagne

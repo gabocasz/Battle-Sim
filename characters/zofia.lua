@@ -42,6 +42,9 @@ Dmg = 7
 Defense = 3
 Speed = 5
 
+ImpactGranades = 2
+ConcussionGranades = 2
+
 AdrenalSurge = 3 
 
 zofia.stats = [[
@@ -59,8 +62,6 @@ zofia.stats = [[
 | Granadas de impacto e granadas atordoantes.                                     |
 ===================================================================================
 ]]
-
-
 return zofia
 
 

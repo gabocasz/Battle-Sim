@@ -4,7 +4,8 @@ local utils = require("utils")
 
 fenrir.name = [[
 ===================================================================================
-| FENRIR                                                                          |
+|                          ⚠️ INIMIGO IDENTIFICADO ⚠️                               |
+|                                   FENRIR                                        |
 |                                                                                 |
 | Nome verdadeiro: Sköll Ormr                                                     |
 ===================================================================================
@@ -39,15 +40,23 @@ fenrir.desc = [[
 | refeita, e ele se vê como o agente dessa mudança cataclísmica.                  |
 |                                                                                 |
 ===================================================================================
+
+E hora de eliminar essa ameaca!
 ]]
 
 
 --definitions
-MaxHealth = 10
-Health = 10
-Dmg = 5
-Defense = 7
-Speed = 5
+fenrir.MaxHealth = 15
+fenrir.Health = 15
+fenrir.Dmg = 5
+fenrir.Defense = 7
+fenrir.Speed = 5
+
+fenrir.maxHealUses = 3
+fenrir.healUses = 0
+
+fenrir.fearMines = 3
+
 
 
 
@@ -56,10 +65,10 @@ fenrir.stats = [[
 ==================================================================================
 | Atributos:                                                                     |
 |                                                                                |
-| Vida:        ]] .. utils.getProgressBar(Health) .. [[                          |
-| Dano:   ]] .. utils.getProgressBar(Dmg)  .. [[                                 |
-| Defesa:       ]] .. utils.getProgressBar(Defense)  .. [[                       |
-| Velocidade:  ]] .. utils.getProgressBar(Speed) .. [[                           |
+| Vida:         ]] .. utils.getProgressBar(fenrir.Health) .. [[                                                       |
+| Dano:         ]] .. utils.getProgressBar(fenrir.Dmg)  .. [[                                                       |    
+| Defesa:       ]] .. utils.getProgressBar(fenrir.Defense)  .. [[                                                       |
+| Velocidade:   ]] .. utils.getProgressBar(fenrir.Speed) .. [[                                                       |
 |                                                                                |
 ==================================================================================
 ]]
@@ -75,5 +84,4 @@ fenrir.ability = [[
 |                                                                                 |
 ==================================================================================
 ]]
-
 return fenrir 

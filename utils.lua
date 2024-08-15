@@ -30,7 +30,8 @@ local function capitalize(str)
 end
 
 
--- Função para escolher o personagem
+SelectedCharacter = nil
+
 function utils.characterChooser()
     while true do
         print([[
@@ -43,13 +44,27 @@ function utils.characterChooser()
 |.Twitch                                              |
 =======================================================
 ]])
-        character = io.read():lower()  -- Converte a entrada para minúsculas para facilitar a comparação
-        character = capitalize(character)    -- Formata para que a primeira letra seja maiúscula
-        if utils.loadCharacter(character) then
-            if utils.confirmCharacter(character) then
-                break  -- Sai do loop se o jogador confirmar a escolha
+        local input = io.read():lower()  -- Converte a entrada para minúsculas
+        local characterName = capitalize(input)  -- Formata para que a primeira letra seja maiúscula
+        local character = utils.loadCharacter(characterName)  -- Tenta carregar o personagem
+        if character then
+            if utils.confirmCharacter(characterName) then
+                SelectedCharacter = character  -- Armazena o personagem na variável global
+                
+                -- Crie um objeto player com todas as propriedades necessárias
+                local player = {
+                    name = characterName,
+                    MaxHealth = character.MaxHealth,
+                    Health = character.Health,
+                    Dmg = character.Dmg,
+                    Defense = character.Defense,
+                    Speed = character.Speed,
+                    AdrenalSurge = character.AdrenalSurge
+                }
+
+                return player  -- Retorna o objeto do personagem se confirmado
             else
-                print("")
+                print("Escolha cancelada. Selecione novamente.")
             end
         else
             print("Você não escolheu um personagem válido! Tente novamente.")
@@ -59,19 +74,19 @@ end
 
 
 
--- Função para carregar o personagem escolhido e verificar se ele é válido
+
 function utils.loadCharacter(name)
-    local path = "characters." .. name
+    local path = "characters." .. name:lower()  -- Garante que o caminho use letras minúsculas
     local success, character = pcall(require, path)
-    
+
     if success and type(character) == "table" then
         print(character.name)
         print(character.desc)
         print(character.stats)
-        return true
+        return character  -- Retorna o personagem se ele foi carregado com sucesso
     else
         print("Erro: Personagem não encontrado ou inválido.")
-        return false
+        return nil  -- Retorna nil se o personagem não foi carregado
     end
 end
 
@@ -183,6 +198,14 @@ function utils.start()
         end
     end
 end
+
+
+function utils.ask()
+    io.write("> ")
+    local answer = io.read("*n")
+    return answer
+end
+
 
 
 return utils 
