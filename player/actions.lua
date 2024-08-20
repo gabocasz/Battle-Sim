@@ -17,7 +17,6 @@ function actions.dealDamage(player)
         |                                          |
         ============================================]])
         print("")
-        actions.playerTurn()
         return
     end
     print([[
@@ -78,17 +77,19 @@ function actions.ability()
         print([[
 ==========================================
 | SEU TURNO                              |
-| debug                                  |]])
+|                                        |]])
         print("| Você não pode usar essa habilidade!    |")
         print("==========================================")
-        print(montShield)
-        print(player)
+        
         actions.playerTurn()
         return
     end
 
     if player.name == "Sledge" then
         if DemoHammer > 0 then
+
+            fenrir.Defense = fenrir.Defense / 2
+            DemoHammer = DemoHammer - 1
             print([[
 ==========================================
 | SEU TURNO                              |
@@ -98,8 +99,7 @@ function actions.ability()
             print("| Usos restantes: " .. DemoHammer .. "/2                    |")
             print("==========================================")
             print("")
-            fenrir.Defense = fenrir.Defense / 2
-            DemoHammer = DemoHammer - 1
+
         else
             print([[
 ==========================================
@@ -116,6 +116,7 @@ function actions.ability()
             montShield = false
         end
         if montShield then
+            montShield = false
             print([[
         ==============================================
         |                                            |
@@ -142,7 +143,7 @@ function actions.ability()
         print([[
           =============================
           | Qual granada deseja usar? |
-          | 1. Granadas de impacto     |
+          | 1. Granadas de impacto    |
           | 2. Granadas de concussão  |
           =============================]])
         
@@ -156,12 +157,14 @@ function actions.ability()
 =================================================================
 | SEU TURNO                                                     |
 |                                                               |]])
-                print("| Você joga uma granada de impacto e causa 5 de dano!          |")
-                print("| Granadas restantes: " .. ImpactGranades .. "                 |")
+                print("| Você joga uma granada de impacto e causa 5 de dano!           |")
+                print("| Granadas restantes: " .. ImpactGranades .. "                                         |")
                 print("=================================================================")
+                print("")
             else
                 print("| Você não possui granadas de impacto.                          |")
                 print("=================================================================")
+                print("")
                 actions.playerTurn()
             end
 
@@ -173,13 +176,15 @@ function actions.ability()
 =================================================================
 | SEU TURNO                                                     |
 |                                                               |]])
-                print("| Você joga uma granada de concussão.                          |")
-                print("| A velocidade de Fenrir foi reduzida em 2.                    |")
-                print("| Granadas restantes: " .. ConcussionGranades .. "             |")
+                print("| Você joga uma granada de concussão.                           |")
+                print("| A velocidade de Fenrir foi reduzida em 2.                     |")
+                print("| Granadas restantes: " .. ConcussionGranades .. "                                        |")
                 print("=================================================================")
+                print("")
             else
                 print("| Você não possui granadas de concussão.                        |")
                 print("=================================================================")
+                print("")
                 actions.playerTurn()
             end
         else
@@ -269,7 +274,8 @@ function actions.bossAttack()
 ==========================================
 | TURNO DO BOSS                          |
 |                                        |]])
-        local damage = fenrir.Dmg
+local rawDamage = fenrir.Dmg - math.random() * Defense
+local damage = math.max(1, math.ceil(rawDamage))
         Health = Health - damage
         print("| Fenrir ataca você e causa "..damage.." de dano!   |")
         print("==========================================")
@@ -308,7 +314,7 @@ function actions.bossHeal()
         fenrir.healUses = fenrir.healUses + 1 -- Incrementa o contador de curas usadas
         print("| Fenrir se cura em 5 de vida!           |")
         print(string.format("| Vida atual: %d/%d                      |", fenrir.Health, fenrir.MaxHealth))
-        print(string.format("| Limite de usos: %d/%d                  |", fenrir.healUses, fenrir.maxHealUses))
+        print(string.format("| Limite de usos: %d/%d                    |", fenrir.healUses, fenrir.maxHealUses))
         print("==========================================")
         print("")
     else
@@ -334,7 +340,7 @@ function actions.bossFearMines()
         print("| Fenrir usa minas de pavor!             |")
         print("| Sua velocidade foi diminuída em 1.     |")
         print("| Velocidade atual: "..Speed.."                    |")
-        print("| Usos restantes: "..fenrir.fearMines.."                       |")        
+        print("| Usos restantes: "..fenrir.fearMines.."                      |")     
         print("==========================================")
         print("")
 

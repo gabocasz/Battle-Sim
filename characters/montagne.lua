@@ -30,7 +30,7 @@ MaxHealth = 15
 Health = 15
 Dmg = 3
 Defense = 9
-Speed = 3 
+Speed = 5
 
 AdrenalSurge = 3
 

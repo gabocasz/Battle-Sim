@@ -49,13 +49,13 @@ E hora de eliminar essa ameaca!
 fenrir.MaxHealth = 15
 fenrir.Health = 15
 fenrir.Dmg = 5
-fenrir.Defense = 7
-fenrir.Speed = 5
+fenrir.Defense = 5
+fenrir.Speed = 4
 
 fenrir.maxHealUses = 3
 fenrir.healUses = 0
 
-fenrir.fearMines = 3
+fenrir.fearMines = 2
 
 
 

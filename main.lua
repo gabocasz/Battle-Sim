@@ -32,12 +32,13 @@ local function battleLoop(player, fenrir)
     while fenrir.Health > 0 and Health > 0 do
         -- Exibe o status atual do jogador e de Fenrir
         print([[
-==============================================================
-| STATUS                                                     |           
-|                                                            |]])                                  
-        print(string.format("| Status do Jogador: Vida: %d/%d | Usos de Adrenal Surge: %d  |", Health, MaxHealth, AdrenalSurge))
-        print(string.format("| Status de Fenrir: Vida: %d/%d                              |", fenrir.Health, fenrir.MaxHealth))
-        print("==============================================================")
+===============================================================
+| STATUS                                                      |           
+|                                                             |]])                                  
+        print(string.format("| Status do Jogador: Vida: %d/%d | Usos de Adrenal Surge: %d   |", Health, MaxHealth, AdrenalSurge))
+        print(string.format("| Status de Fenrir: Vida: %d/%d                               |", fenrir.Health, fenrir.MaxHealth))
+        print("===============================================================")
+        print("")
 
         -- Dá ao jogador uma opção de escolha de ação
         actions.playerTurn(player)
