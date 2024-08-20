@@ -2,7 +2,7 @@ local sledge = {}
 
 local utils = require("utils")
 
-sledge.name = [[
+CharacterName = [[
 ==================================================================================
 |SLEDGE                                                                          |
 |                                                                                |
@@ -32,11 +32,13 @@ sledge.desc = [[
 ]]
 
 --definitions
-MaxHealth = 10
-Health = 10
+MaxHealth = 50
+Health = 100
 Dmg = 5
 Defense = 5
 Speed = 3
+
+DemoHammer = 2 
 
 AdrenalSurge = 3 
 

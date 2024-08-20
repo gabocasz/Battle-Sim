@@ -32,6 +32,8 @@ Dmg = 4
 Defense = 4
 Speed = 8
 
+TwDronesLeft = 3
+
 AdrenalSurge = 3 
 
 twitch.stats = [[
@@ -39,10 +41,10 @@ twitch.stats = [[
 ===================================================================================
 | Atributos:                                                                      |
 |                                                                                 |
-| Vida:        ]] .. utils.getProgressBar(Health) .. [[                           |
-| Dano:   ]] .. utils.getProgressBar(Dmg)  .. [[                                  |
-| Defesa:       ]] .. utils.getProgressBar(Defense)  .. [[                        |
-| Velocidade:  ]] .. utils.getProgressBar(Speed) .. [[                            |
+| Vida:       ]] .. utils.getProgressBar(Health ) .. [[                                                          |
+| Dano:       ]] .. utils.getProgressBar(Dmg    ) .. [[                                                          |
+| Defesa:     ]] .. utils.getProgressBar(Defense) .. [[                                                          |
+| Velocidade: ]] .. utils.getProgressBar(Speed  ) .. [[                                                          |
 |                                                                                 |
 | Habilidades especiais:                                                          |
 | - Drone de choque: Desativa uma habilidade aleatoria do oponente na proxima     |

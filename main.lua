@@ -2,9 +2,10 @@ local utils = require("utils")
 local fenrir = require("boss.fenrir")
 local actions = require("player.actions")
 
--- Habilitar o UTF-8
+-- Habilitar o UTF-8 para garantir a compatibilidade com caracteres especiais
 utils.enableUtf8()
 
+-- Função para exibir o cabeçalho inicial do jogo
 local function printHeader()
     print([[
 ================================================================================
@@ -14,7 +15,7 @@ local function printHeader()
 |                                                                              |
 |                                                                              |
 |                                                                              |
-|by:gaboca :D                                                                  |
+| by: gaboca :D                                                                |
 ================================================================================
 ]])
 end 
@@ -22,39 +23,39 @@ end
 -- Função principal para iniciar o loop de batalha
 local function battleLoop(player, fenrir)
     print("A batalha começou!")
-    print(fenrir.name)
-    print(fenrir.desc)
-    print(fenrir.stats)
-    print(fenrir.ability)
+    print(fenrir.name)  -- Exibe o nome do boss
+    print(fenrir.desc)  -- Exibe a descrição do boss
+    print(fenrir.stats) -- Exibe as estatísticas iniciais do boss
+    print(fenrir.ability) -- Exibe a habilidade especial do boss
 
+    -- Loop da batalha, continua até que um dos lados tenha a vida zerada
     while fenrir.Health > 0 and Health > 0 do
         -- Exibe o status atual do jogador e de Fenrir
-        print(string.format("\nStatus do Jogador: Vida: %d/%d | Usos de Adrenal Surge: %d", Health, MaxHealth, AdrenalSurge))
-        print(string.format("Status de Fenrir: Vida: %d/%d", fenrir.Health, fenrir.MaxHealth))
+        print([[
+==============================================================
+| STATUS                                                     |           
+|                                                            |]])                                  
+        print(string.format("| Status do Jogador: Vida: %d/%d | Usos de Adrenal Surge: %d  |", Health, MaxHealth, AdrenalSurge))
+        print(string.format("| Status de Fenrir: Vida: %d/%d                              |", fenrir.Health, fenrir.MaxHealth))
+        print("==============================================================")
 
-        -- Oferece ao jogador uma escolha de ação
-        print("\nO que você deseja fazer?")
-        print("1. Atacar")
-        print("2. Usar Adrenal Surge")
-        print("3. Habilidade em Desenvolvimento")
-        local choice = utils.ask()
-
-        if choice == 1 then
-            actions.dealDamage(player)
-        elseif choice == 2 then
-            actions.adrenalSurge(player)
-        elseif choice == 3 then
-            actions.ability(player)
-        else
-            print("Escolha inválida! Por favor, selecione 1, 2 ou 3.")
-        end
+        -- Dá ao jogador uma opção de escolha de ação
+        actions.playerTurn(player)
 
         -- Verifica se a batalha deve continuar
         if fenrir.Health <= 0 then
-            print("Parabéns! Você derrotou Fenrir e salvou o mundo do Ragnarok!")
+            print("===============================================================")
+            print("| VITÓRIA!!                                                   |")
+            print("|                                                             |")
+            print("| Parabéns! Você derrotou Fenrir e salvou o mundo do Ragnarok!|")
+            print("===============================================================")
             break
         elseif Health <= 0 then
-            print("Você foi derrotado por Fenrir. O Ragnarok começou...")
+            print("==============================================================")
+            print("| DERROTA...                                                 |")
+            print("|                                                            |")
+            print("| Você foi derrotado por Fenrir. O Ragnarok começou...       |")
+            print("==============================================================")
             break
         end
 
@@ -63,32 +64,29 @@ local function battleLoop(player, fenrir)
 
         -- Verifica novamente se a batalha deve continuar após a ação do boss
         if Health <= 0 then
-            print("Você foi derrotado por Fenrir. O Ragnarok começou...")
+            print("==============================================================")
+            print("| DERROTA...                                                 |")
+            print("|                                                            |")
+            print("| Você foi derrotado por Fenrir. O Ragnarok começou...       |")
+            print("==============================================================")
             break
         elseif fenrir.Health <= 0 then
-            print("Parabéns! Você derrotou Fenrir e salvou o mundo do Ragnarok!")
+            print("===============================================================")
+            print("| VITÓRIA!!                                                   |")
+            print("|                                                             |")
+            print("| Parabéns! Você derrotou Fenrir e salvou o mundo do Ragnarok!|")
+            print("===============================================================")
             break
         end
     end
 end
 
--- Início do jogo
+-- Início do jogo: exibe o cabeçalho e a introdução
 printHeader()
 utils.displayIntro()
 
--- Escolha do personagem
+-- Escolha do personagem pelo jogador
 local player = utils.characterChooser()
 
--- Verificação do player
-if player then
-    print("Player selecionado:", player.name)
-else
-    print("Nenhum player foi selecionado.")
-end
-
--- Verifica se o jogador foi corretamente definido antes de iniciar a batalha
-if player then
-    battleLoop(player, fenrir)
-else
-    print("Erro: Nenhum personagem foi selecionado.")
-end
+-- Inicia o loop da batalha entre o jogador e Fenrir
+battleLoop(player, fenrir)

@@ -30,7 +30,6 @@ local function capitalize(str)
 end
 
 
-SelectedCharacter = nil
 
 function utils.characterChooser()
     while true do
@@ -49,10 +48,10 @@ function utils.characterChooser()
         local character = utils.loadCharacter(characterName)  -- Tenta carregar o personagem
         if character then
             if utils.confirmCharacter(characterName) then
-                SelectedCharacter = character  -- Armazena o personagem na variável global
+                
                 
                 -- Crie um objeto player com todas as propriedades necessárias
-                local player = {
+                player  = {
                     name = characterName,
                     MaxHealth = character.MaxHealth,
                     Health = character.Health,
@@ -86,7 +85,7 @@ function utils.loadCharacter(name)
         return character  -- Retorna o personagem se ele foi carregado com sucesso
     else
         print("Erro: Personagem não encontrado ou inválido.")
-        return nil  -- Retorna nil se o personagem não foi carregado
+        return   -- Retorna nil se o personagem não foi carregado
     end
 end
 

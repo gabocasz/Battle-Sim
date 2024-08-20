@@ -38,16 +38,16 @@ montagne.stats = [[
 
 ==================================================================================
 | Atributos:                                                                     |
-|                                                                                 |
-| Vida:        ]] .. utils.getProgressBar(Health ) .. [[                             |
-| Dano:        ]] .. utils.getProgressBar(Dmg    ) .. [[                             |
-| Defesa:      ]] .. utils.getProgressBar(Defense) .. [[                             |
-| Velocidade:  ]] .. utils.getProgressBar(Speed  ) .. [[                             |
-|                                                                                 |
-| Habilidades especiais:                                                          |
-| - Escudo LeRoc: Nega totalmente o dano recebido na proxima rodada.              |
-|                                                                                 |
-|                                                                                 |
-===================================================================================
+|                                                                                |
+| Vida:        ]] .. utils.getProgressBar(Health ) .. [[                                                        |
+| Dano:        ]] .. utils.getProgressBar(Dmg    ) .. [[                                                        |
+| Defesa:      ]] .. utils.getProgressBar(Defense) .. [[                                                        |
+| Velocidade:  ]] .. utils.getProgressBar(Speed  ) .. [[                                                        |
+|                                                                                |
+| Habilidades especiais:                                                         |
+| - Escudo LeRoc: Nega totalmente o dano recebido na proxima rodada.             |
+|                                                                                |
+|                                                                                |
+==================================================================================
 ]]
 return montagne
